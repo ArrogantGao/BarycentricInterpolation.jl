@@ -92,7 +92,7 @@ function weights end
 weights(poly::Type{<: AbstractPolynomial{N}}) where N = [_weight(poly, j) for j = 0:N]
 
 # Eq. (5.1)
-@inline _weight(poly::Type{<: Equispaced{N, T}}, j::Integer) where {N, T} = T((2*xor(isodd(N), iseven(j))-1)*binomial(N, j))
+@inline _weight(poly::Type{<: Equispaced{N, T}}, j::Integer) where {N, T} = T((2*xor(isodd(N), iseven(j))-1)*binomial(big(N), j))
 
 # Eq. (5.3)
 @inline _weight(poly::Type{<: Chebyshev1{N, T}}, j::Integer) where {N, T} = -(2*iseven(j)-1)*sinpi(T(2j + 1)/(2N + 2))
